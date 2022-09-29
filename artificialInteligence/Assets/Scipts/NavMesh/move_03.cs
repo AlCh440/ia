@@ -7,16 +7,18 @@ public class move_03 : MonoBehaviour
 {
     public NavMeshAgent agent;
     public GameObject target;
-    public bool seek;
-    public bool flee;
-    public bool wander;
-    float maxVelocity = 10;
+
+    public bool wander = false;
+    public bool pursue = false;
+    public bool evade = false;
+    public bool hide = false;
     float turnSpeed = 10;
 
     Vector3 movement;
 
+    GameObject[] hidingSpots;
 
-
+    
     float turnAcceleration = 3f;
     float maxTurnSpeed = 7;
     float movSpeed;
@@ -24,8 +26,8 @@ public class move_03 : MonoBehaviour
     float maxSpeed = 7;
 
     float stopDistance = 10;
-    float offset = 3;
-    float radius = 5;
+    float offset = 1;
+    float radius = 3;
 
     Quaternion rotation;
     // Start is called before the first frame update
@@ -37,21 +39,29 @@ public class move_03 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        hidingSpots = GameObject.FindGameObjectsWithTag("hide");
+
         if (Vector3.Distance(target.transform.position, transform.position) <
         stopDistance) return;
-        if (seek)
-        {
-            Seek();
-        }
-        else if(flee)
-        {
-            Flee();
-        }
-        else if (wander)
+
+       
+        if (wander)
         {
             Wander();
         }
-        
+        else if (pursue)
+        {
+            Pursue();
+        }
+        else if (evade)
+        {
+            Evade();
+        }
+        else if (hide)
+        {
+            Seek(Hide());
+        }
+
 
 
         turnSpeed += turnAcceleration * Time.deltaTime;
@@ -66,15 +76,15 @@ public class move_03 : MonoBehaviour
                               Time.deltaTime;
     }
 
-    void Seek()
+    void Seek(Vector3 destination)
     {
-        agent.destination = target.transform.position;
+        agent.destination = destination;
        
     }
 
-    void Flee()
+    void Flee(Vector3 destination)
     {
-        Vector3 fleeVector = target.transform.position - this.transform.position;
+        Vector3 fleeVector = destination - this.transform.position;
         agent.SetDestination(this.transform.position - fleeVector);
     }
 
@@ -84,5 +94,42 @@ public class move_03 : MonoBehaviour
         localTarget += new Vector3(0, 0, offset);
         Vector3 worldTarget = transform.TransformPoint(localTarget);
         worldTarget.y = 0f;
+        agent.destination = worldTarget;
+    }
+
+    void Pursue()
+    {
+        Vector3 targetDir = target.transform.position - transform.position;
+        float lookAhead = targetDir.magnitude / agent.speed;
+        Seek(target.transform.position + target.transform.forward * lookAhead);
+    }
+
+    void Evade()
+    {
+        Vector3 targetDir = target.transform.position - transform.position;
+        float lookAhead = targetDir.magnitude / agent.speed;
+        Flee(target.transform.position + target.transform.forward * lookAhead);
+    }
+
+    Vector3 Hide()
+    {
+        GameObject hidingSpot = hidingSpots[0];
+
+        for (int i = 1; i < hidingSpots.Length; i++)
+        {
+            if ((hidingSpots[i].transform.position - transform.position).magnitude > (hidingSpot.transform.position - transform.position).magnitude)
+            {
+                hidingSpot = hidingSpots[i];
+            }
+        }
+
+        Vector3 dir = hidingSpot.transform.position - target.transform.position;
+        Ray backRay = new Ray(hidingSpot.transform.position, -dir.normalized);
+        RaycastHit info;
+        hidingSpot.GetComponent<Collider>().Raycast(backRay, out info, 20f);
+        Vector3 destination = info.point + dir.normalized;
+        return destination;
+
     }
 }
+
