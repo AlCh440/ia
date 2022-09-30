@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - hide
+  - patrol
   layers:
   - Default
   - TransparentFX

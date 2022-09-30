@@ -9,7 +9,7 @@ public class kinematic : MonoBehaviour
     public Transform target;
     Vector3 movement;
 
-    float stopDist = 10;
+
 
     float turnAcceleration = 0.1f;
     float maxTurnSpeed = 5;
