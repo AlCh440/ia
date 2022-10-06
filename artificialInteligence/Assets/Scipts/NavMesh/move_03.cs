@@ -40,6 +40,10 @@ public class move_03 : MonoBehaviour
         if (hide)
             hidingSpots = GameObject.FindGameObjectsWithTag("hide");
 
+        if (patrol)
+        {
+            patrolWP = (patrolWP + 1) % wayPoints.Length;
+        }
     }
 
     // Update is called once per frame
@@ -69,7 +73,10 @@ public class move_03 : MonoBehaviour
         }
         else if (patrol)
         {
-            if (agent.remainingDistance < 0.5f || patrolWP == 0) Patrol();
+            if (agent.remainingDistance < 0.5f) 
+                patrolWP = (patrolWP + 1) % wayPoints.Length; 
+            
+            Patrol();
         }
 
 
@@ -149,9 +156,9 @@ public class move_03 : MonoBehaviour
     }
 
     void Patrol()
-    {
-        patrolWP = (patrolWP + 1) % wayPoints.Length;
+    { 
         Seek(wayPoints[patrolWP].transform.position);
+        //agent.destination = wayPoints[patrolWP].transform.position;
     }
 }
 
