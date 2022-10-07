@@ -10,11 +10,12 @@ public class move_03 : MonoBehaviour
     public GameObject target;
 
     public bool wander = false;
+    public bool drunk = false;
     public bool pursue = false;
     public bool evade = false;
     public bool hide = false;
     public bool patrol = false;
-    float turnSpeed = 10;
+
 
     Vector3 movement;
 
@@ -23,15 +24,14 @@ public class move_03 : MonoBehaviour
 
     int patrolWP;
 
-    float turnAcceleration = 3f;
-    float maxTurnSpeed = 7;
+    
     float movSpeed;
-    float acceleration = 3f;
-    float maxSpeed = 7;
 
     float stopDistance = 10;
-    float offset = 1;
+    float offset = 5;
+    float drunkOffset = 1f;
     float radius = 3;
+    float drunkRadius = 2;
 
     Quaternion rotation;
     // Start is called before the first frame update
@@ -57,7 +57,13 @@ public class move_03 : MonoBehaviour
        
         if (wander)
         {
-            Wander();
+            if (agent.remainingDistance < 0.5f)
+                Wander();
+        }
+        else if (drunk)
+        {
+            if (agent.remainingDistance < 0.5f)
+                Drunk();
         }
         else if (pursue)
         {
@@ -110,9 +116,19 @@ public class move_03 : MonoBehaviour
         localTarget += new Vector3(0, 0, offset);
         Vector3 worldTarget = transform.TransformPoint(localTarget);
         worldTarget.y = 0f;
+        
         agent.destination = worldTarget;
     }
 
+    void Drunk()
+    {
+        Vector3 localTarget = UnityEngine.Random.insideUnitCircle * drunkRadius;
+        localTarget += new Vector3(0, 0, drunkOffset);
+        Vector3 worldTarget = transform.TransformPoint(localTarget);
+        worldTarget.y = 0f;
+
+        agent.destination = worldTarget;
+    }
     void Pursue()
     {
         Vector3 targetDir = target.transform.position - transform.position;
@@ -138,20 +154,20 @@ public class move_03 : MonoBehaviour
         //        hidingSpot = hidingSpots[i];
         //    }
         //}
-
+        //
         //System.Func<GameObject, float> distance =
-        //    (hs) => Vector3.Distance(target.transform.position,
-        //                             hs.transform.position);
+        //   (hs) => Vector3.Distance(target.transform.position,
+        //                            hs.transform.position);
         //GameObject hidingSpot = hidingSpots.Select(
-        //    ho => (distance(ho), ho)
-        //    ).Min().Item2;
-
-       //Vector3 dir = hidingSpot.transform.position - target.transform.position;
-       //Ray backRay = new Ray(hidingSpot.transform.position, -dir.normalized);
-       //RaycastHit info;
-       //hidingSpot.GetComponent<Collider>().Raycast(backRay, out info, 20f);
-       //Vector3 destination = info.point + dir.normalized;
-       //return destination;
+        //   ho => (distance(ho), ho)
+        //   ).Min().Item2;
+        //
+        //Vector3 dir = hidingSpot.transform.position - target.transform.position;
+        //Ray backRay = new Ray(hidingSpot.transform.position, -dir.normalized);
+        //RaycastHit info;
+        //hidingSpot.GetComponent<Collider>().Raycast(backRay, out info, 20f);
+        //Vector3 destination = info.point + dir.normalized;
+        //return destination;
 
     }
 
