@@ -59,6 +59,7 @@ public class move_03 : MonoBehaviour
         {
             if (agent.remainingDistance < 0.5f)
                 Wander();
+            
         }
         else if (drunk)
         {

@@ -60,11 +60,17 @@
     <Compile Include="Assets\Scipts\kinematics\move_01.cs" />
     <Compile Include="Assets\Scipts\kinematics\kinematic.cs" />
     <Compile Include="Assets\Scipts\Steering\steering.cs" />
+    <Compile Include="Assets\externalAssets\TAZO_3D_C\DemoScene\Action_Manage.cs" />
+    <Compile Include="Assets\externalAssets\TAZO_3D_C\DemoScene\demo.cs" />
+    <Compile Include="Assets\externalAssets\TAZO_3D_C\Creature\Egg_Minions\eyeball\aaa.cs" />
   </ItemGroup>
   <ItemGroup>
+     <None Include="Assets\externalAssets\TAZO_3D_C\Creature\Egg_Minions\Shader\Cartoon_a_without_outline.shader" />
      <None Include="Assets\externalAssets\greyRoadStudio\LowPolyTreePack\readme.txt" />
      <None Include="Assets\externalAssets\Five Seamless Tileable Ground Textures\read me.txt" />
-     <None Include="Assets\GreekPack1Lite\README.txt" />
+     <None Include="Assets\externalAssets\GreekPack1Lite\README.txt" />
+     <None Include="Assets\externalAssets\TAZO_3D_C\Creature\Egg_Minions\Shader\Cartoon.shader" />
+     <None Include="Assets\externalAssets\TAZO_3D_C\Creature\Egg_Minions\Shader\Cartoon_culloff.shader" />
     <Reference Include="UnityEngine">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2020.1.8f1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
     </Reference>
