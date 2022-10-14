@@ -44,7 +44,11 @@ public class move_03 : MonoBehaviour
         {
             patrolWP = (patrolWP + 1) % wayPoints.Length;
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
             
+=======
+
+>>>>>>> Stashed changes
 =======
 
 >>>>>>> Stashed changes
