@@ -43,6 +43,7 @@ public class move_03 : MonoBehaviour
         if (patrol)
         {
             patrolWP = (patrolWP + 1) % wayPoints.Length;
+            
         }
     }
 
