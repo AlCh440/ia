@@ -81,7 +81,7 @@ public class move_03 : MonoBehaviour
         }
         else if (patrol)
         {
-            if (agent.remainingDistance < 0.5f) 
+            if (agent.remainingDistance < 4.5f) 
                 patrolWP = (patrolWP + 1) % wayPoints.Length; 
             
             Patrol();
