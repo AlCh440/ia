@@ -43,11 +43,7 @@ public class move_03 : MonoBehaviour
         if (patrol)
         {
             patrolWP = (patrolWP + 1) % wayPoints.Length;
-<<<<<<< Updated upstream
             
-=======
-
->>>>>>> Stashed changes
         }
     }
 
@@ -68,7 +64,7 @@ public class move_03 : MonoBehaviour
         }
         else if (drunk)
         {
-            if (agent.remainingDistance < 3.0f)
+            if (agent.remainingDistance < 0.5f)
                 Drunk();
         }
         else if (pursue)
