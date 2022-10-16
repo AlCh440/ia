@@ -1,2 +1,4 @@
 C:\Users\juanam15\Documents\GitHub\ia\artificialInteligence\obj\Debug\Assembly-CSharp.csproj.AssemblyReference.cache
 C:\Users\juanam15\Documents\GitHub\ia\artificialInteligence\obj\Debug\Assembly-CSharp.csproj.CoreCompileInputs.cache
+C:\Users\achic\OneDrive\Documentos\inteligencia_artificial\ia\artificialInteligence\obj\Debug\Assembly-CSharp.csproj.AssemblyReference.cache
+C:\Users\achic\OneDrive\Documentos\inteligencia_artificial\ia\artificialInteligence\obj\Debug\Assembly-CSharp.csproj.CoreCompileInputs.cache
