@@ -28,11 +28,11 @@ MonoBehaviour:
     <_rootList>\r\n        <elem>\r\n          <ActionNode id=\"1\" />\r\n       
     </elem>\r\n      </_rootList>\r\n      <_nodes>\r\n        <nodes>\r\n         
     <ActionNode id=\"1\" />\r\n        </nodes>\r\n      </_nodes>\r\n    </BehaviorTree>\r\n   
-    <ActionNode id=\"1\">\r\n      <_data>\r\n        <data breakpoint=\"0\" selected=\"False\"
-    position=\"286 163\" name=\"Basic/SetInt\" description=\"Sets a value to an integer
-    variable\" cardinality=\"0\" hasParent=\"False\">\r\n          <BehaviorTree
-    id=\"0\" />\r\n          <ActionNode id=\"1\" />\r\n        </data>\r\n     
+    <ActionNode id=\"1\">\r\n      <_data>\r\n        <data breakpoint=\"0\" selected=\"True\"
+    position=\"578.7709 428.1666\" name=\"Basic/SetInt\" description=\"Sets a value
+    to an integer variable\" cardinality=\"0\" hasParent=\"False\">\r\n         
+    <BehaviorTree id=\"0\" />\r\n          <ActionNode id=\"1\" />\r\n        </data>\r\n     
     </_data>\r\n    </ActionNode>\r\n  </editorInfo>\r\n</BehaviorBricks>"
-  zoom: 1
+  zoom: 0.5
   subslist: []
   _guid: 00fe0c5094c4d5943a5f8622f987496b
