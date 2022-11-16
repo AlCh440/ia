@@ -128,7 +128,7 @@ MonoBehaviour:
     cardinality=\"0\" hasParent=\"True\">\r\n          <BehaviorTree id=\"0\" />\r\n         
     <ConditionNode id=\"10\" />\r\n          <RepeatUntilSuccess id=\"9\" />\r\n       
     </data>\r\n      </_data>\r\n    </ConditionNode>\r\n    <ActionNode id=\"6\">\r\n     
-    <_data>\r\n        <data breakpoint=\"0\" selected=\"True\" position=\"694.4911
+    <_data>\r\n        <data breakpoint=\"0\" selected=\"False\" position=\"694.4911
     521\" name=\"MyActions/Hide\" description=\"Get the Vector3 for hiding.\" cardinality=\"0\"
     hasParent=\"True\">\r\n          <BehaviorTree id=\"0\" />\r\n          <ActionNode
     id=\"6\" />\r\n          <SequenceNode id=\"5\" />\r\n        </data>\r\n     
