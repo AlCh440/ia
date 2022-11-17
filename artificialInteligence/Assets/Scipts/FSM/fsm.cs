@@ -3,38 +3,84 @@ using System.Collections;
 
 public class fsm : MonoBehaviour
 {
-   
-    public GameObject seat;
-    public float dist2Steal = 10f;
-    move_03 move;
+
+    float offset = 5;
+    float radius = 3;
+
+    GameObject[] ABOCHI;
+    public float distSitting = 100f;
+    //public move_03 moves;
     UnityEngine.AI.NavMeshAgent agent;
 
     private WaitForSeconds wait = new WaitForSeconds(0.05f); // == 1/20
     delegate IEnumerator State();
     private State state;
 
+    GameObject Seatspot;
+
     IEnumerator Start()
     {
-        moves = gameObject.GetComponent<move_03>();
+
         agent = gameObject.GetComponent<UnityEngine.AI.NavMeshAgent>();
+
+        ABOCHI = GameObject.FindGameObjectsWithTag("Seats");
+        // moves = gameObject.GetComponent<move_03>();
+       
 
         yield return wait;
 
         state = Wander;
 
         while (enabled)
-            yield return StartCoroutine(state());
+        yield return StartCoroutine(state());
+    }
+
+    private void Update()
+    {
+
+        Seatspot = ABOCHI[0];
+        
+       // for (int i = 1; i < ABOCHI.Length; i++)
+       // {
+       //     if (Vector3.Distance(agent.transform.position, ABOCHI[i].transform.position) > distSitting)
+       //     {
+       //        Seatspot = ABOCHI[i];
+       //     }
+       // }
+
+        Wander();
+
+        if (state == Wander)
+        {
+            Wander();
+        }
+        else if (state == Approaching)
+        {
+            Approaching();
+        }
+        else if (state == Sittings)
+        {
+            Sittings();
+        }
+
+
+
+
     }
 
     IEnumerator Wander()
     {
         Debug.Log("Wander state");
 
-        while (Vector3.Distance(seat.transform.position)< distSitting)
+        while (Vector3.Distance(agent.transform.position, Seatspot.transform.position)> distSitting)
         {
-            moves.Wander();
+
+
+           
+            Wanders();
             yield return wait;
         };
+        
 
         state = Approaching;
     }
@@ -44,12 +90,13 @@ public class fsm : MonoBehaviour
         Debug.Log("Approaching state");
 
         agent.speed = 2f;        
-        moves.Seek(seat.transform.position);
+        
+        agent.destination = Seatspot.transform.position;
 
         bool sitting = false;
-        while (Vector3.Distance(seat.transform.position) > distsitting)
+        while (Vector3.Distance(agent.transform.position, Seatspot.transform.position) < distSitting)
         {
-            if (Vector3.Distance(seat.transform.position, transform.position) < 2f)
+            if (Vector3.Distance(Seatspot.transform.position, transform.position) < 0.5f)
             {
                 sitting = true;
                 break;
@@ -81,5 +128,18 @@ public class fsm : MonoBehaviour
             yield return wait;
         };
     }
+
+
+    void Wanders()
+    {
+        Vector3 localTarget = UnityEngine.Random.insideUnitCircle * radius;
+        localTarget += new Vector3(0, 0, offset);
+        Vector3 worldTarget = transform.TransformPoint(localTarget);
+        worldTarget.y = 0f;
+
+        agent.destination = worldTarget;
+    }
 }
+
+
 

@@ -6,6 +6,7 @@ TagManager:
   tags:
   - hide
   - patrol
+  - Seats
   layers:
   - Default
   - TransparentFX
