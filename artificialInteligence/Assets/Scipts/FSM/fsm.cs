@@ -16,6 +16,8 @@ public class fsm : MonoBehaviour
     delegate IEnumerator State();
     private State state;
 
+    int timer = 0;
+    int forcedWanderTimer = 0;
     GameObject Seatspot;
 
     IEnumerator Start()
@@ -40,15 +42,16 @@ public class fsm : MonoBehaviour
 
         Seatspot = ABOCHI[0];
         
-       // for (int i = 1; i < ABOCHI.Length; i++)
-       // {
-       //     if (Vector3.Distance(agent.transform.position, ABOCHI[i].transform.position) > distSitting)
-       //     {
-       //        Seatspot = ABOCHI[i];
-       //     }
-       // }
+        for ( int i = 0; i < ABOCHI.Length; i ++)
+        {
+            if (Vector3.Distance(Seatspot.transform.position, agent.transform.position) > Vector3.Distance(ABOCHI[i].transform.position, agent.transform.position))
+            {
+                Seatspot = ABOCHI[i];
+            }// player to seatspot vs player to ABOCHI [i] --> take closer
+        }
 
-        Wander();
+
+
 
         if (state == Wander)
         {
@@ -71,18 +74,34 @@ public class fsm : MonoBehaviour
     IEnumerator Wander()
     {
         Debug.Log("Wander state");
+        if (forcedWanderTimer <= 0)
+        {
+            while (Vector3.Distance(agent.transform.position, Seatspot.transform.position) > distSitting)
+            {
 
-        while (Vector3.Distance(agent.transform.position, Seatspot.transform.position)> distSitting)
+
+
+                Wander_();
+                yield return wait;
+            };
+
+            state = Approaching;
+        }
+        else
         {
 
+            while (forcedWanderTimer >= 0)
+            {
 
-           
-            Wanders();
-            yield return wait;
-        };
+                forcedWanderTimer--;
+
+                Wander_();
+                yield return wait;
+            };
+            
+        }
+
         
-
-        state = Approaching;
     }
 
     IEnumerator Approaching()
@@ -109,6 +128,7 @@ public class fsm : MonoBehaviour
             agent.speed = 0f;
             Debug.Log("Sitting");
             state = Sittings;
+            timer = 120;
         }
         else
         {
@@ -122,15 +142,21 @@ public class fsm : MonoBehaviour
     {
         Debug.Log("Sittings");
 
-        while (true)
+        while (timer >= 0)
         {
+            timer--;
+            
             agent.speed = 0f;
             yield return wait;
         };
+
+        state = Wander;
+        forcedWanderTimer = 360;
+        agent.speed = 2f;
     }
 
 
-    void Wanders()
+    void Wander_()
     {
         Vector3 localTarget = UnityEngine.Random.insideUnitCircle * radius;
         localTarget += new Vector3(0, 0, offset);
