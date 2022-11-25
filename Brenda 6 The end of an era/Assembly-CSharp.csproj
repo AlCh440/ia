@@ -81,6 +81,7 @@
     <Compile Include="Assets\BehaviorBricks\Actions\System\GameObject\SetActive.cs" />
     <Compile Include="Assets\BehaviorBricks\Actions\System\GameObject\FindGameObjectByName.cs" />
     <Compile Include="Assets\Scripts\Rebut.cs" />
+    <Compile Include="Assets\Scripts\move_03.cs" />
     <Compile Include="Assets\BehaviorBricks\Conditions\System\Basic\CheckKey.cs" />
     <Compile Include="Assets\BehaviorBricks\Actions\System\Basic\SetBool.cs" />
     <Compile Include="Assets\Scripts\Target.cs" />
@@ -104,7 +105,6 @@
     <Compile Include="Assets\BehaviorBricks\Samples\ProgrammersQuickStartGuide\Done\DoneBulletScript.cs" />
     <Compile Include="Assets\BehaviorBricks\Actions\System\Audio\PlaySound.cs" />
     <Compile Include="Assets\BehaviorBricks\Samples\ProgrammersQuickStartGuide\Done\DoneIsNight.cs" />
-    <Compile Include="Assets\Scripts\move_03.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\LowPolyTreePack\readme.txt" />
