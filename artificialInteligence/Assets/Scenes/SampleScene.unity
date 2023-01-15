@@ -1448,8 +1448,8 @@ MonoBehaviour:
     - {fileID: 789065672}
     - {fileID: 132064017}
     - {fileID: 2134450556}
-    - {fileID: 0}
-    - {fileID: 0}
+    - {fileID: 513659940}
+    - {fileID: 2134450556}
     objectParamsNames:
     - Floor
     - this
@@ -20862,17 +20862,17 @@ MonoBehaviour:
     colorParamsNames: []
     colorParamsLostDefaultValue: 
     objectParams:
-    - {fileID: 1154998175}
-    - {fileID: 516973136}
     - {fileID: 998169358}
     - {fileID: 1565993769}
     - {fileID: 516973136}
+    - {fileID: 1154998175}
+    - {fileID: 516973136}
     objectParamsNames:
-    - Treasure
-    - Cop
     - Floor
     - this
     - target
+    - T
+    - Hunter
     objectParamsLostDefaultValue: 
     layerMaskParams: []
     layerMaskParamsNames: []
